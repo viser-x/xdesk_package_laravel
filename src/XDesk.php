@@ -33,8 +33,6 @@ class XDesk
             ->post('https://package.viserx.dev/api/client', $postData);
         if ($response->successful()) {
             $data = $response->json();
-            info($response);
-            info($data);
             return $data;
         } else {
             info($response->status());
