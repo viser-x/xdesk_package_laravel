@@ -1,16 +1,16 @@
 {
-    "name": "imrul18/x-desk",
-    "type": "library",
-    "autoload": {
-        "psr-4": {
-            "XDesk\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "imrul18",
-            "email": "imrul.afnan18@gmail.com"
-        }
-    ],
-    "require": {}
+  "name": "imrul18/x-desk",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "XDesk\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "imrul18",
+      "email": "imrul.afnan18@gmail.com"
+    }
+  ],
+  "require": {}
 }

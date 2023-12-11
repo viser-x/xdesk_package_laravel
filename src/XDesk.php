@@ -20,6 +20,7 @@ class XDesk
             'companyId' => $this->companyID,
             'clientId' => $this->clientID,
             'adminId' => $this->adminID,
+            'Origin' => $this->origin,
         ];
 
         $postData = [
