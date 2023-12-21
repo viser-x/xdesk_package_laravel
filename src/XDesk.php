@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Http;
 class XDesk
 {
     public $companyID, $clientID, $adminID, $origin;
-    public function __construct($companyID, $clientID, $adminID)
+    public function __construct($companyID, $clientID, $adminID, $origin)
     {
         $this->companyID = $companyID;
         $this->clientID = $clientID;
         $this->adminID = $adminID;
-        $this->origin = env('APP_URL');
+        $this->origin = $origin;
     }
-    public function getURL($name, $email, $details, $isAdmin)
+    public function getURL($details, $isAdmin)
     {
         $headers = [
             'companyId' => $this->companyID,
@@ -24,14 +24,12 @@ class XDesk
         ];
 
         $postData = [
-            'name' => $name,
-            'email' => $email,
             'details' => $details,
-            'isAdmin' => $isAdmin,
+            'is_admin' => $isAdmin,
         ];
 
         $response = Http::withHeaders($headers)
-            ->post('https://package.viserx.dev/api/client', $postData);
+            ->post('https://api.xdesk.viserx.dev/api/client', $postData);
         if ($response->successful()) {
             $data = $response->json();
             return $data;
