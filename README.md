@@ -10,37 +10,38 @@ composer require imrul18/x-desk
 
 In Laravel :
 
-```js
-import React, { useState } from "react";
-import XDesk from "xdesk";
+```php
+use .........
+use XDesk\XDesk;
 
-const App = () => {
-    const user = {
-        name: "Imrul Afnan",
-        email: "test@example.com",
-        img: "https://a.storyblok.com/f/191576/1200x800/215e59568f/round_profil_picture_after_.webp",
-        phone: "016XXX-XXXXX"
-        .............
+class TestController extends Controller
+{
+    public function test(){
+        // <------ Rest code ------>
+        $user = [
+            'name' => "Afnan", //required
+            'email' => 'test@gmail.com', //required
+            'img' => "https://a.storyblok.com/f/191576/1200x800/215e59568f/round_profil_picture_after_.webp", //recommanded
+            'age' => 21,
+            ...
+        ];
+        $xdesk = new XDesk(
+            'COMPANY_ID',
+            'CLIENT_ID',
+            'ADMIN_ID',
+            'http://localhost:3000' // origin
+            );
+
+        $data = $xdesk->getURL($user, false); // true for admin Account & false for client account
+
+        if ($data['status'] == 200) {
+            return redirect($data['url']);
+        } else {
+            $message = $data['message'];
+            return view('page', compact('message'));
+        }
+        // <------ Rest code ------>
     }
-    const [loading, setLoading] = useState(false)
-  return (
-    <div>
-        <------ Rest code ------>
-        <XDesk
-            name={user.name}
-            email={user.email}
-            details={user}
-            isAdmin={false} // true for admin Account & false for client account
-            companyId="COMPANY_ID"
-            clientId="CLIENT_ID"
-            adminId="ADMIN_ID"
-            setLoader={ status => setLoading(status)}
-          >
-            <div className="btn btn-danger">{loading ? "Please Wait" : "Open Ticket"}</div>
-        </XDesk>
-        <------ Rest code ------>
-    </div>
-  );
 };
 ```
 
